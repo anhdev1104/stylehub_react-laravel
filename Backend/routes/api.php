@@ -12,6 +12,7 @@ use App\Http\Controllers\Apis\UserController;
 use App\Http\Controllers\Apis\BrandController;
 use App\Http\Controllers\Apis\OrderController;
 use App\Http\Controllers\Apis\OrderDetailController;
+use App\Http\Controllers\Apis\StatiscalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,9 @@ Route::prefix('v1')->group(function () {
     
     Route::get('/order-details', [OrderDetailController::class, 'index'])->middleware('jwt.auth');
     Route::get('/orders/{id}/order-details', [OrderDetailController::class, 'getOrderId'])->middleware('jwt.auth');
+
+    Route::get('/order-statistical', [StatiscalController::class, 'orderStatistical']);
+    Route::get('/order-count', [StatiscalController::class, 'countOrder']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
